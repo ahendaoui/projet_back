@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style type="text/css">
+        body {
+            background: #b3b3b3;
+        }
+
+        .chat {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff;
+            height: 300px;
+            width: 500px;
+            border: 1px solid black;
+            margin-bottom: 10px;
+            overflow-x: scroll;
+        }
+
+            .container .message {
+                background: #b3b3b3;
+                padding: 5px 10px;
+                width: max-content;
+                border-radius: 10px;
+                margin: 10px;
+                float: left;
+                clear: both;
+            }
+
+                .container .message.sent {
+                    background: #0058ff;
+                    color: #fff;
+                    float: right;
+                }
+
+        input {
+            width: 80%;
+        }
+
+        button {
+            width: 17%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat">
+        <div class="chat-a">
+            <h4>Chat A</h4>
+            <div class="container"></div>
+            <input type="text" id="chat-a" />
+            <button id="btn-a" onclick="sendMsg('a', 'b')">OK</button>
+        </div>
+        <div class="chat-b">
+            <h4>Chat B</h4>
+            <div class="container"></div>
+            <input type="text" id="chat-b" />
+            <button id="btn-b" onclick="sendMsg('b', 'a')">OK</button>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        function sendMsg(source, destination) {
+            var inputValue = document.getElementById("chat-" + source);
+            if (inputValue.value.length) {
+                var sourceBox = document.querySelectorAll(
+                    ".chat-" + source + " .container"
+                )[0];
+                var destinationBox = document.querySelectorAll(
+                    ".chat-" + destination + " .container"
+                )[0];
+                sourceBox.innerHTML +=
+                    '<p class="message sent">' + inputValue.value + "</p>";
+                destinationBox.innerHTML +=
+                    '<p class="message">' + inputValue.value + "</p>";
+                inputValue.value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+
